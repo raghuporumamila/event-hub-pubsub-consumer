@@ -1,4 +1,2 @@
-com/eventhub/pubsub/consumer/PubsubOptions.class
-com/eventhub/pubsub/consumer/PubsubPipeline$1.class
-com/eventhub/pubsub/consumer/PubsubPipeline.class
 event_hub/event_hub_pubsub_consumer/App.class
+com/eventhub/pubsub/consumer/PubsubPipeline.class
