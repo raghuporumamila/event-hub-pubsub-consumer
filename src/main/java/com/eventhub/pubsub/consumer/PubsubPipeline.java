@@ -86,13 +86,16 @@ public class PubsubPipeline {
                         .withStatement(insertSQL)
                         .withPreparedStatementSetter((element, statement) -> {
                             try {
-
                                 statement.setString(1, element.getName());
                                 statement.setString(2, element.getPayload());
                                 statement.setTimestamp(3, Timestamp.from(Instant.now()));
                                 statement.setLong(4, element.getEventDefinition().getId());
                                 statement.setLong(5, element.getOrganization().getId());
-                                statement.setLong(6, element.getSource().getId());
+                                if (element.getEventDefinition().getSource() != null) {
+                                    statement.setLong(6, element.getEventDefinition().getSource().getId());
+                                } else {
+                                    statement.setLong(6, 1);
+                                }
                                 statement.setLong(7, element.getWorkspace().getId());
                             } catch(Exception error) {
                                 error.printStackTrace();
